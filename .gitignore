@@ -39,3 +39,13 @@
 
 # debug information files
 *.dwo
+
+# Copilot
+*.db
+
+# Visual Studio
+*.vsidx
+*.ipch
+
+# Logs
+*.tlog
