@@ -52,6 +52,31 @@ void IMGUIManager::DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
+	DisplayGraphicsDisplay(deltaTime, vertexCount);
+	DisplayMenus();
+
+	ImGui::Render();
+	ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), commandBuffersVulkan->commandBuffers[currentFrame]);
+}
+
+void IMGUIManager::DisplayMenus()
+{
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("File"))
+		{
+			if (ImGui::MenuItem("Exit"))
+			{
+				// Set a flag or call a function to exit the application
+			}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+}
+
+void IMGUIManager::DisplayGraphicsDisplay(float deltaTime, uint32_t vertexCount)
+{
 	ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_Once);
 
 	ImGui::Begin("Graphics Statistics");
@@ -59,9 +84,6 @@ void IMGUIManager::DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t
 	ImGui::Text("FPS: %.1f", 1.0f / deltaTime);
 	ImGui::Text("Vertices Rendered: %u", vertexCount);
 	ImGui::End();
-
-	ImGui::Render();
-	ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), commandBuffersVulkan->commandBuffers[currentFrame]);
 }
 
 void IMGUIManager::CleanUp()

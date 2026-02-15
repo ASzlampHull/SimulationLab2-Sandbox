@@ -139,6 +139,7 @@ void Renderer::RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t image
 
 	uint32_t vertexCount = 0;
 
+
 	for (const auto& pair : resourceManager.GetModels()) {
         const auto& model = pair.second;
 		const auto& mesh = model.GetMesh();

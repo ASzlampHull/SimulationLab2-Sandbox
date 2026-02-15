@@ -55,6 +55,7 @@ public:
 	}
 
 	void DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount);
+	void DisplayGraphicsDisplay(float deltaTime, uint32_t vertexCount);
 	void CleanUp();
 };
 
