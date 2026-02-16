@@ -139,7 +139,6 @@ void Renderer::RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t image
 
 	uint32_t vertexCount = 0;
 
-
 	for (const auto& pair : resourceManager.GetModels()) {
         const auto& model = pair.second;
 		const auto& mesh = model.GetMesh();
@@ -273,6 +272,18 @@ void Renderer::InitRenderer(const ConfigData& configData, GLFWwindow* window_, c
     dayNightSeasonal = DayNightSeasonal(configData);
     InitVulkan();
 	InitIMGUI();
+	SetScenario(std::make_unique<ScenarioDefault>(this));
+}
+
+void Renderer::SetScenario(std::unique_ptr<Scenario> scenario)
+{
+	if (currentScenario) {
+		currentScenario->OnUnload();
+	}
+	currentScenario = std::move(scenario);
+	if (currentScenario) {
+		currentScenario->OnLoad();
+	}
 }
 
 void Renderer::Update(const InputManager& input, const CameraSettings& currentCamera_, float deltaTime_, bool* framebufferResized_)
@@ -283,5 +294,7 @@ void Renderer::Update(const InputManager& input, const CameraSettings& currentCa
 
 	auto& models = resourceManager.GetModels();
 	dayNightSeasonal.Update(deltaTime, input, models.at("sun"), models.at("moon"));
-    DrawFrame();
+	if (currentScenario) {
+		currentScenario->OnUpdate(deltaTime);
+	}
 }

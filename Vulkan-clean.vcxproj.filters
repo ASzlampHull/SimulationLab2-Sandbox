@@ -49,6 +49,12 @@
     <Filter Include="Source Files\IMGUI">
       <UniqueIdentifier>{3599f39f-649f-4834-902c-4fc33f25cb19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scenarios">
+      <UniqueIdentifier>{91aef96c-3c38-4741-af55-7a2eabde6865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenarios">
+      <UniqueIdentifier>{487c6673-e89d-4a33-a1fb-6432818bc420}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -158,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="IMGUIManager.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioDefault.cpp">
+      <Filter>Source Files\Scenarios</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +300,12 @@
     </ClInclude>
     <ClInclude Include="IMGUIManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario.h">
+      <Filter>Header Files\Scenarios</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioDefault.h">
+      <Filter>Header Files\Scenarios</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -155,6 +155,7 @@
     <ClCompile Include="ParserBase.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="ScenarioDefault.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -214,6 +215,8 @@
     <ClInclude Include="imstb_rectpack.h" />
     <ClInclude Include="imstb_textedit.h" />
     <ClInclude Include="imstb_truetype.h" />
+    <ClInclude Include="Scenario.h" />
+    <ClInclude Include="ScenarioDefault.h" />
     <ClInclude Include="VulkanBuffers.h" />
     <ClInclude Include="VulkanCommandBuffers.h" />
     <ClInclude Include="VulkanCore.h" />

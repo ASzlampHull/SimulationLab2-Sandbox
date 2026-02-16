@@ -15,12 +15,16 @@
 #include <array>
 #include <GLFW/glfw3.h>
 
+#include "Scenario.h"
+#include "ScenarioDefault.h"
+
 
 class Renderer final {
 private:
     ResourceManager resourceManager;
 	IMGUIManager imguiManager;
     DayNightSeasonal dayNightSeasonal;
+	std::unique_ptr<Scenario> currentScenario;
 
     VulkanCore vulkanCore;
     VulkanSwapChain vulkanSwapChain;
@@ -52,7 +56,6 @@ private:
 	void CleanupSwapChain();
 	void RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
 	void UpdateUniformBuffer(uint32_t currentImage);
-	void DrawFrame();
 public:
 	Renderer() = default;
 	~Renderer() = default;
@@ -89,6 +92,8 @@ public:
 	const CoreVulkan& GetCoreVulkan() const { return *coreVulkan; };
 
 	void InitRenderer(const ConfigData& configData, GLFWwindow* window_, const CameraSettings& currentCamera_);
+    void SetScenario(std::unique_ptr<Scenario> scenario);
 	void Update(const InputManager& input, const CameraSettings& currentCamera_, float deltaTime_, bool* framebufferResized_);
+    void DrawFrame();
 	void Cleanup();
 };

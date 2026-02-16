@@ -63,7 +63,7 @@ void IMGUIManager::DisplayMenus()
 {
 	if (ImGui::BeginMainMenuBar())
 	{
-		if (ImGui::BeginMenu("File"))
+		if (ImGui::BeginMenu("Scenario"))
 		{
 			if (ImGui::MenuItem("Exit"))
 			{
