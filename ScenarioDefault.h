@@ -4,9 +4,6 @@
 
 class ScenarioDefault : public Scenario
 {
-
-
-
 public:
 	ScenarioDefault(Renderer* renderer) {
 		this->renderer = renderer;

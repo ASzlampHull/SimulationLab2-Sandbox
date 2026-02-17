@@ -1,4 +1,5 @@
 #include "IMGUIManager.h"
+#include "Renderer.h"
 
 static void check_vk_result(VkResult err)
 {
@@ -46,28 +47,27 @@ void IMGUIManager::InitializeIMGUI()
 	ImGui_ImplVulkan_Init(&init_info);
 }
 
-void IMGUIManager::DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount)
+void IMGUIManager::DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount, Renderer* renderer)
 {
 	ImGui_ImplVulkan_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
 	DisplayGraphicsDisplay(deltaTime, vertexCount);
-	DisplayMenus();
+	DisplayMenus(renderer);
 
 	ImGui::Render();
 	ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), commandBuffersVulkan->commandBuffers[currentFrame]);
 }
 
-void IMGUIManager::DisplayMenus()
+void IMGUIManager::DisplayMenus(Renderer* renderer)
 {
 	if (ImGui::BeginMainMenuBar())
 	{
 		if (ImGui::BeginMenu("Scenario"))
 		{
-			if (ImGui::MenuItem("Exit"))
-			{
-				// Set a flag or call a function to exit the application
+			if (ImGui::MenuItem("Default Scenario")) {
+				renderer->SetScenario(std::make_unique<ScenarioDefault>(renderer));
 			}
 			ImGui::EndMenu();
 		}

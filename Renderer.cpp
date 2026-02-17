@@ -167,7 +167,7 @@ void Renderer::RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t image
         vertexCount += mesh.GetVertices().size();
     }
 
-    imguiManager.DisplayIMGUI(currentFrame, deltaTime, vertexCount);
+    imguiManager.DisplayIMGUI(currentFrame, deltaTime, vertexCount, this);
 
     vkCmdEndRenderPass(commandBuffer);
 

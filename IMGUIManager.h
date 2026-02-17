@@ -1,10 +1,11 @@
 #pragma once
-
 #include "VulkanDataTypes.h"
 #include "VulkanExternals.h"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_vulkan.h"
+
+class Renderer;
 
 class IMGUIManager final {
 private:
@@ -54,8 +55,8 @@ public:
 		InitializeIMGUI();
 	}
 
-	void DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount);
-	void DisplayMenus();
+	void DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount, Renderer* renderer);
+	void DisplayMenus(Renderer* renderer);
 	void DisplayGraphicsDisplay(float deltaTime, uint32_t vertexCount);
 	void CleanUp();
 };
