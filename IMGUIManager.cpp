@@ -69,6 +69,9 @@ void IMGUIManager::DisplayMenus(Renderer* renderer)
 			if (ImGui::MenuItem("Default Scenario")) {
 				renderer->SetScenario(std::make_unique<ScenarioDefault>(renderer));
 			}
+			if (ImGui::MenuItem("Clear Color Scenario")) {
+				renderer->SetScenario(std::make_unique<ScenarioClearColor>(renderer));
+			}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

@@ -168,6 +168,9 @@
     <ClCompile Include="ScenarioDefault.cpp">
       <Filter>Source Files\Scenarios</Filter>
     </ClCompile>
+    <ClCompile Include="ScenarioClearColor.cpp">
+      <Filter>Source Files\Scenarios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="shaders\shader.comp">
@@ -305,6 +308,9 @@
       <Filter>Header Files\Scenarios</Filter>
     </ClInclude>
     <ClInclude Include="ScenarioDefault.h">
+      <Filter>Header Files\Scenarios</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioClearColor.h">
       <Filter>Header Files\Scenarios</Filter>
     </ClInclude>
   </ItemGroup>

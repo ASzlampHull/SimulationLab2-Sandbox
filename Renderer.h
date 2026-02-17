@@ -17,6 +17,7 @@
 
 #include "Scenario.h"
 #include "ScenarioDefault.h"
+#include "ScenarioClearColor.h"
 
 
 class Renderer final {
@@ -88,7 +89,8 @@ public:
         return *this;
     }
 
-	const ResourceManager& GetResourceManager() const { return resourceManager; };
+	ResourceManager& GetResourceManager() { return resourceManager; };
+	DayNightSeasonal& GetDayNightSeasonal() { return dayNightSeasonal; };
 	const CoreVulkan& GetCoreVulkan() const { return *coreVulkan; };
 
 	void InitRenderer(const ConfigData& configData, GLFWwindow* window_, const CameraSettings& currentCamera_);

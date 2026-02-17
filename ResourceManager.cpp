@@ -75,6 +75,11 @@ void ResourceManager::CleanupBuffersVI()
 	}
 }
 
+void ResourceManager::ClearModels()
+{
+	models.clear();
+}
+
 const VkDescriptorPool ResourceManager::GetMainDescriptorPool() const
 {
 	const auto& pair = models.begin();

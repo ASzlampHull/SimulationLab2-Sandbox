@@ -8,8 +8,6 @@ class ResourceManager final {
 private:
 	std::unordered_map<std::string, Model> models;
 	ModelLoader modelLoader;
-	MeshObject allMeshObjects;
-	IndicesVector allMeshIndices;
 	std::unordered_map<std::string, VkSampler> textureSamplers;
 
 	void CreateModels();
@@ -26,6 +24,7 @@ public:
 	void CleanupTextures(const CoreVulkan* coreVulkan);
 	void CreateVertexIndexBuffers(const CoreVulkan* coreVulkan, const CommandPoolVulkan* commandPoolVulkan);
 	void CleanupBuffersVI();
+	void ClearModels();
 
 	std::unordered_map<std::string, Model>& GetModels() { return models; };
 	const VkDescriptorPool GetMainDescriptorPool() const;

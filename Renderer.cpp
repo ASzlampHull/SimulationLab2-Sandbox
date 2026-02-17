@@ -291,10 +291,8 @@ void Renderer::Update(const InputManager& input, const CameraSettings& currentCa
     currentCamera = currentCamera_;
 	framebufferResized = framebufferResized_;
     deltaTime = deltaTime_;
-
-	auto& models = resourceManager.GetModels();
-	dayNightSeasonal.Update(deltaTime, input, models.at("sun"), models.at("moon"));
+    	
 	if (currentScenario) {
-		currentScenario->OnUpdate(deltaTime);
+		currentScenario->OnUpdate(deltaTime, input);
 	}
 }

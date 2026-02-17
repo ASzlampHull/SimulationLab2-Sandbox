@@ -1,13 +1,12 @@
 #pragma once
 #include "Scenario.h"
-#include <iostream>
 
-class ScenarioDefault : public Scenario
+class ScenarioClearColor : public Scenario
 {
 public:
-	ScenarioDefault(Renderer* renderer) {
+	ScenarioClearColor(Renderer* renderer) {
 		this->renderer = renderer;
-		name = "Default Scenario";
+		name = "Clear Color Scenario";
 	}
 	virtual void OnLoad() override;
 	virtual void OnUpdate(float deltaTime, const InputManager& input) override;
