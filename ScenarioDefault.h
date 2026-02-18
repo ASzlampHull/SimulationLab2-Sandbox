@@ -1,6 +1,5 @@
 #pragma once
 #include "Scenario.h"
-#include <iostream>
 
 class ScenarioDefault : public Scenario
 {

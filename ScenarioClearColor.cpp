@@ -4,6 +4,7 @@
 
 void ScenarioClearColor::OnLoad()
 {
+	std::cout << "Loading Clear Color Scenario" << name << std::endl;
 }
 
 void ScenarioClearColor::OnUpdate(float deltaTime, const InputManager& input)
@@ -13,4 +14,5 @@ void ScenarioClearColor::OnUpdate(float deltaTime, const InputManager& input)
 
 void ScenarioClearColor::OnUnload()
 {
+	std::cout << "Unloading Clear Color Scenario" << name << std::endl;
 }

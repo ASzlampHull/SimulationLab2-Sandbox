@@ -91,6 +91,7 @@ public:
 
 	ResourceManager& GetResourceManager() { return resourceManager; };
 	DayNightSeasonal& GetDayNightSeasonal() { return dayNightSeasonal; };
+	Scenario* GetCurrentScenario() const { return currentScenario.get(); };
 	const CoreVulkan& GetCoreVulkan() const { return *coreVulkan; };
 
 	void InitRenderer(const ConfigData& configData, GLFWwindow* window_, const CameraSettings& currentCamera_);

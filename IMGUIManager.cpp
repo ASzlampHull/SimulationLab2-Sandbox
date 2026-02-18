@@ -47,13 +47,26 @@ void IMGUIManager::InitializeIMGUI()
 	ImGui_ImplVulkan_Init(&init_info);
 }
 
+bool IMGUIManager::IsScenario(const std::string& scenarioName_, Renderer* renderer)
+{
+	auto scenarioName = renderer->GetCurrentScenario()->GetName();
+
+	if (scenarioName == scenarioName_) {
+		return true;
+	}
+	else
+		return false;
+}
+
 void IMGUIManager::DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount, Renderer* renderer)
 {
 	ImGui_ImplVulkan_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
-	DisplayGraphicsDisplay(deltaTime, vertexCount);
+	if (IsScenario("Default Scenario", renderer)) {
+		DisplayGraphicsDisplay(deltaTime, vertexCount);
+	}
 	DisplayMenus(renderer);
 
 	ImGui::Render();

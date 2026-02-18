@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_vulkan.h"
+#include <string>
 
 class Renderer;
 
@@ -18,6 +19,7 @@ private:
 	GLFWwindow* window;
 
 	void InitializeIMGUI();
+	bool IsScenario(const std::string& scenarioName, Renderer* renderer);
 
 public:
 	IMGUIManager() = default;
