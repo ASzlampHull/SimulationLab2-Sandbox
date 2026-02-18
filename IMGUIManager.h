@@ -18,7 +18,7 @@ private:
 	VkDescriptorPool mainDescriptorPool;
 	GLFWwindow* window;
 
-	float clearColor[3] = { 0.0f, 0.0f, 0.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 
 	void InitializeIMGUI();
 	bool IsScenario(const std::string& scenarioName, Renderer* renderer);

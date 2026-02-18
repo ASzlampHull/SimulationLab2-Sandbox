@@ -112,10 +112,6 @@ void Renderer::RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t image
     renderPassInfo.renderArea.offset = { 0, 0 };
     renderPassInfo.renderArea.extent = swapChainVulkan->swapChainExtent;
 
-    std::array<VkClearValue, 2> clearValues{};
-    clearValues[0].color = { {0.0f, 0.0f, 0.0f, 1.0f} };
-    clearValues[1].depthStencil = { 1.0f, 0 };
-
     renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
     renderPassInfo.pClearValues = clearValues.data();
 
@@ -273,6 +269,7 @@ void Renderer::InitRenderer(const ConfigData& configData, GLFWwindow* window_, c
     InitVulkan();
 	InitIMGUI();
 	SetScenario(std::make_unique<ScenarioDefault>(this));
+	SetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void Renderer::SetScenario(std::unique_ptr<Scenario> scenario)
@@ -284,6 +281,12 @@ void Renderer::SetScenario(std::unique_ptr<Scenario> scenario)
 	if (currentScenario) {
 		currentScenario->OnLoad();
 	}
+}
+
+void Renderer::SetClearColor(float r, float g, float b, float a)
+{
+    clearValues[0].color = { r, g, b, a };
+    clearValues[1].depthStencil = { 1.0f, 0 };
 }
 
 void Renderer::Update(const InputManager& input, const CameraSettings& currentCamera_, float deltaTime_, bool* framebufferResized_)

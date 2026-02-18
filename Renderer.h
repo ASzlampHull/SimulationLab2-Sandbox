@@ -49,6 +49,7 @@ private:
     uint32_t currentFrame = 0;
     float deltaTime = 0.0f;
     float timeAccumulator = 0.0f;
+    std::array<VkClearValue, 2> clearValues{};
 
 	void InitVulkan();
 	void InitIMGUI();
@@ -94,8 +95,10 @@ public:
 	Scenario* GetCurrentScenario() const { return currentScenario.get(); };
 	const CoreVulkan& GetCoreVulkan() const { return *coreVulkan; };
 
-	void InitRenderer(const ConfigData& configData, GLFWwindow* window_, const CameraSettings& currentCamera_);
     void SetScenario(std::unique_ptr<Scenario> scenario);
+    void SetClearColor(float r, float g, float b, float a);
+
+	void InitRenderer(const ConfigData& configData, GLFWwindow* window_, const CameraSettings& currentCamera_);
 	void Update(const InputManager& input, const CameraSettings& currentCamera_, float deltaTime_, bool* framebufferResized_);
     void DrawFrame();
 	void Cleanup();

@@ -88,10 +88,11 @@ void IMGUIManager::DisplayMenusScenarioClearColor(Renderer* renderer)
 	if (IsScenario("Clear Color Scenario", renderer)) {
 		if (ImGui::BeginMenu("Colour"))
 		{
-			ImGui::ColorPicker3("Colour", clearColor);
+			ImGui::ColorPicker4("Colour", clearColor);
 			ImGui::EndMenu();
 		}
 	}
+	renderer->SetClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 }
 
 void IMGUIManager::DisplayMenusScenarios(Renderer*& renderer)
