@@ -18,6 +18,8 @@ private:
 	VkDescriptorPool mainDescriptorPool;
 	GLFWwindow* window;
 
+	float clearColor[3] = { 0.0f, 0.0f, 0.0f };
+
 	void InitializeIMGUI();
 	bool IsScenario(const std::string& scenarioName, Renderer* renderer);
 
@@ -59,6 +61,8 @@ public:
 
 	void DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount, Renderer* renderer);
 	void DisplayMenus(Renderer* renderer);
+	void DisplayMenusScenarioClearColor(Renderer* renderer);
+	void DisplayMenusScenarios(Renderer*& renderer);
 	void DisplayGraphicsDisplay(float deltaTime, uint32_t vertexCount);
 	void CleanUp();
 };

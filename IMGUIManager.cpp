@@ -77,17 +77,34 @@ void IMGUIManager::DisplayMenus(Renderer* renderer)
 {
 	if (ImGui::BeginMainMenuBar())
 	{
-		if (ImGui::BeginMenu("Scenario"))
+		DisplayMenusScenarios(renderer);
+		DisplayMenusScenarioClearColor(renderer);
+		ImGui::EndMainMenuBar();
+	}
+}
+
+void IMGUIManager::DisplayMenusScenarioClearColor(Renderer* renderer)
+{
+	if (IsScenario("Clear Color Scenario", renderer)) {
+		if (ImGui::BeginMenu("Colour"))
 		{
-			if (ImGui::MenuItem("Default Scenario")) {
-				renderer->SetScenario(std::make_unique<ScenarioDefault>(renderer));
-			}
-			if (ImGui::MenuItem("Clear Color Scenario")) {
-				renderer->SetScenario(std::make_unique<ScenarioClearColor>(renderer));
-			}
+			ImGui::ColorPicker3("Colour", clearColor);
 			ImGui::EndMenu();
 		}
-		ImGui::EndMainMenuBar();
+	}
+}
+
+void IMGUIManager::DisplayMenusScenarios(Renderer*& renderer)
+{
+	if (ImGui::BeginMenu("Scenario"))
+	{
+		if (ImGui::MenuItem("Default Scenario")) {
+			renderer->SetScenario(std::make_unique<ScenarioDefault>(renderer));
+		}
+		if (ImGui::MenuItem("Clear Color Scenario")) {
+			renderer->SetScenario(std::make_unique<ScenarioClearColor>(renderer));
+		}
+		ImGui::EndMenu();
 	}
 }
 
