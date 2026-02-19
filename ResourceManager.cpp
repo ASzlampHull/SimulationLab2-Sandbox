@@ -92,9 +92,9 @@ void ResourceManager::CreateSJGModels(const std::vector<std::string>& sjgFilePat
 		MeshDataSJG meshDataSJG = sjgParser.ParseSJGFile(filePath);
 		ModelData modelData;
 		// Use file path as name for simplicity
-		modelData.name = filePath; 
-		modelData.objData.name = filePath;
-		modelData.objData.configName = filePath;
+		modelData.name = filePath + std::to_string(i);
+		modelData.objData.name = filePath + std::to_string(i);
+		modelData.objData.configName = filePath + std::to_string(i);
 		for (const auto& vertex : meshDataSJG.vertices) {
 			glm::vec3 vertexPos(vertex.x, vertex.y, vertex.z);
 			glm::vec3 vertexNormal(vertex.nx, vertex.ny, vertex.nz);
