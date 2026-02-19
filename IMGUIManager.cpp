@@ -109,7 +109,22 @@ void IMGUIManager::DisplayMenusScenarioPhysicsObjects(Renderer* renderer)
 			ImGui::ColorPicker3("Colour", darkColor);
 			ImGui::EndMenu();
 		}
+		if (ImGui::BeginMenu("Simulation"))
+		{
+			if (ImGui::Button("Start")) {
+				physicsTimeStepEnabled = true;
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Stop")) {
+				physicsTimeStepEnabled = false;
+			}
+
+			ImGui::SliderFloat("Slider", &physicsTimeStep, 0.0f, 1.0f);
+
+			ImGui::EndMenu();
+		}
 		renderer->SetLightDarkColor(lightColor, darkColor);
+		renderer->SetPhysicsTimeStep(physicsTimeStep, physicsTimeStepEnabled);
 	}
 }
 

@@ -295,6 +295,22 @@ void Renderer::SetLightDarkColor(float lightColor[3], float darkColor[3])
     lightDarkColor.second = glm::vec3(darkColor[0], darkColor[1], darkColor[2]);
 }
 
+void Renderer::UpdatePhysicsTime()
+{
+    physicsAccumulator += deltaTime;
+
+    while (physicsAccumulator >= fixedPhysicsTimeStep)
+    {
+        physicsAccumulator -= fixedPhysicsTimeStep;
+    }
+}
+
+void Renderer::SetPhysicsTimeStep(float timeStep, bool enabled)
+{
+    fixedPhysicsTimeStep = timeStep; 
+    enablePhysicsTimeStep = enabled;
+}
+
 void Renderer::Update(const InputManager& input, const CameraSettings& currentCamera_, float deltaTime_, bool* framebufferResized_)
 {
     currentCamera = currentCamera_;

@@ -21,6 +21,8 @@ private:
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	float lightColor[3] = { 1.0f, 1.0f, 1.0f};
 	float darkColor[3] = { 0.0f, 0.0f, 0.0f};
+	bool physicsTimeStepEnabled = true;
+	float physicsTimeStep = 1.0f / 60.0f;
 
 	void InitializeIMGUI();
 	bool IsScenario(const std::string& scenarioName, Renderer* renderer);

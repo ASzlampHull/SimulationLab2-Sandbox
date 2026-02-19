@@ -17,6 +17,7 @@ void ScenarioPhysicsObjects::OnLoad()
 
 void ScenarioPhysicsObjects::OnUpdate(float deltaTime, const InputManager& input)
 {
+	renderer->UpdatePhysicsTime();
 	renderer->DrawFrame();
 }
 
