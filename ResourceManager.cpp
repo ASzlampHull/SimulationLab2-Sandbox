@@ -81,10 +81,14 @@ void ResourceManager::ClearModels()
 }
 
 // Make quickly and dirty way for testing purposes.
-void ResourceManager::CreateSJGModels(const std::vector<std::string>& sjgFilePaths)
+void ResourceManager::CreateSJGModels(const std::vector<std::string>& sjgFilePaths, const std::vector<Transformations> transformations)
 {
 	SJGParser sjgParser;
-	for (const auto& filePath : sjgFilePaths) {
+	size_t count = sjgFilePaths.size();
+	for (size_t i = 0; i < count; ++i) {
+		const auto& filePath = sjgFilePaths[i];
+		const auto& transform = transformations[i];
+
 		MeshDataSJG meshDataSJG = sjgParser.ParseSJGFile(filePath);
 		ModelData modelData;
 		// Use file path as name for simplicity
@@ -115,7 +119,7 @@ void ResourceManager::CreateSJGModels(const std::vector<std::string>& sjgFilePat
 		modelData.mtlData.illuminationModel = 2; // Use a common illumination model
 
 		models[modelData.name] = Model(modelData);
-		models[modelData.name].SetTransformations({ glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f) });
+		models[modelData.name].SetTransformations(transform);
 		models[modelData.name].SetHasNoTexture(true);
 	}
 }

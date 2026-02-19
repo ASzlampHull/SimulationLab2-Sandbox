@@ -27,7 +27,7 @@ public:
 	void CleanupBuffersVI();
 	void ClearModels();
 
-	void CreateSJGModels(const std::vector<std::string>& sjgFilePaths);
+	void CreateSJGModels(const std::vector<std::string>& sjgFilePaths, const std::vector<Transformations> transformations);
 
 	std::unordered_map<std::string, Model>& GetModels() { return models; };
 	const VkDescriptorPool GetMainDescriptorPool() const;
