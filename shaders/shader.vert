@@ -19,8 +19,8 @@ layout(push_constant) uniform PushConstants {
     float shininess;
     float reflectivity;
     float opacity;
-    bool isVertexShaded;
-    bool hasNoTexture;
+    uint isVertexShaded;
+    uint hasNoTexture;
 } pushConstants;
 
 layout(location = 0) in vec3 inPosition;
@@ -74,7 +74,7 @@ void main() {
     fragWorldPos = (ubo.model * vec4(inPosition, 1.0)).xyz;
     fragWorldNormal = mat3(transpose(inverse(ubo.model))) * inNormal;
     
-    if (pushConstants.isVertexShaded)
+    if (pushConstants.isVertexShaded != 0)
     {
         fragColor = VertexShading();
     }

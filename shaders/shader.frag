@@ -19,8 +19,8 @@ layout(push_constant) uniform PushConstants {
     float shininess;
     float reflectivity;
     float opacity;
-    bool isVertexShaded;
-    bool hasNoTexture;
+    uint isVertexShaded;
+    uint hasNoTexture;
 } pushConstants;
 
 layout(location = 0) in vec3 fragColor;
@@ -68,19 +68,40 @@ vec3 PerPixelShading()
     return litColor;
 }
 
+vec3 Checkerboard(vec2 uv, float scale, vec3 color1, vec3 color2) {
+    // Scale the UVs to control the size of the checkerboard squares
+    vec2 scaledUV = uv * scale;
+    // Floor to get integer coordinates, then sum and mod 2 to alternate colors
+    float checker = mod(floor(scaledUV.x) + floor(scaledUV.y), 2.0);
+    return mix(color1, color2, checker);
+}
+
+vec3 CheckerboardWorld(vec3 pos, float scale, vec3 color1, vec3 color2) {
+    // Use the X and Z world coordinates for the checkerboard
+    vec2 coord = pos.xz * scale;
+    float checker = mod(floor(coord.x) + floor(coord.y), 2.0);
+    return mix(color1, color2, checker);
+}
+
 void main() {        
     float opacity = pushConstants.opacity;
-    if (pushConstants.hasNoTexture) {
-        outColor = vec4(fragColor, opacity);
+    
+    if (pushConstants.hasNoTexture != 0) {
+        // Procedural checkerboard: scale controls the number of squares
+        float checkerScale = 2.0; // Adjust for size in world units
+        vec3 colorA = vec3(1.0, 1.0, 1.0); // White
+        vec3 colorB = vec3(0.0, 0.0, 0.0); // Black
+        vec3 checkerColor = CheckerboardWorld(fragWorldPos, checkerScale, colorA, colorB);
+        outColor = vec4(checkerColor, opacity);
         return;
     }
-        if (pushConstants.isVertexShaded) 
-        {
-            outColor = vec4(fragColor * texture(texSampler, fragTexCoord).rgb, opacity);
-        }
-        else
-        {
-            vec3 litColor = PerPixelShading();
-            outColor = vec4(litColor, opacity);
-        }
+    if (pushConstants.isVertexShaded != 0) 
+    {
+        outColor = vec4(fragColor * texture(texSampler, fragTexCoord).rgb, opacity);
+    }
+    else
+    {
+        vec3 litColor = PerPixelShading();
+        outColor = vec4(litColor, opacity);
+    }
 }
