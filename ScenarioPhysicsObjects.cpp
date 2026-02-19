@@ -11,7 +11,7 @@ void ScenarioPhysicsObjects::OnLoad()
 	Transformations transform = { glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f) };
 	transformations.push_back(transform);
 	sjgFilePaths.push_back("models/PhysicsObjects/sphere.sjg");
-	transform = { glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1.0f) };
+	transform = { glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1.0f) };
 	transformations.push_back(transform);
 	renderer->GetResourceManager().CreateSJGModels(sjgFilePaths, transformations);
 	renderer->GetResourceManager().CreateVertexIndexBuffers(renderer->GetCoreVulkanPtr(), renderer->GetCommandPoolVulkanPtr());

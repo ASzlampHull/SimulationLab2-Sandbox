@@ -70,14 +70,6 @@ vec3 PerPixelShading()
     return litColor;
 }
 
-vec3 Checkerboard(vec2 uv, float scale, vec3 color1, vec3 color2) {
-    // Scale the UVs to control the size of the checkerboard squares
-    vec2 scaledUV = uv * scale;
-    // Floor to get integer coordinates, then sum and mod 2 to alternate colors
-    float checker = mod(floor(scaledUV.x) + floor(scaledUV.y), 2.0);
-    return mix(color1, color2, checker);
-}
-
 vec3 CheckerboardWorld(vec3 pos, float scale, vec3 color1, vec3 color2) {
     // Use the X and Z world coordinates for the checkerboard
     vec2 coord = pos.xz * scale;
@@ -91,8 +83,6 @@ void main() {
     if (pushConstants.hasNoTexture != 0) {
         // Procedural checkerboard: scale controls the number of squares
         float checkerScale = 2.0; // Adjust for size in world units
-        //vec3 colorA = vec3(1.0, 1.0, 1.0); // White
-        //vec3 colorB = vec3(0.0, 0.0, 0.0); // Black
         vec3 colorA = pushConstants.lightColor; // Use light color for one of the checker colors
         vec3 colorB = pushConstants.darkColor; // Use dark color for the other checker color
         vec3 checkerColor = CheckerboardWorld(fragWorldPos, checkerScale, colorA, colorB);
