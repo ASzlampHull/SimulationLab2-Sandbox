@@ -30,6 +30,8 @@ struct ModelPushConstants {
     alignas(4) float transparency; // d
     alignas(4) uint32_t isVertexShaded;
     alignas(4) uint32_t hasNoTexture;
+    alignas(16) glm::vec3 lightColor;
+    alignas(16) glm::vec3 darkColor;
 };
 
 struct Vertex {

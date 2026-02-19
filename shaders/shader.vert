@@ -21,6 +21,8 @@ layout(push_constant) uniform PushConstants {
     float opacity;
     uint isVertexShaded;
     uint hasNoTexture;
+    vec3 lightColor;
+    vec3 darkColor;
 } pushConstants;
 
 layout(location = 0) in vec3 inPosition;

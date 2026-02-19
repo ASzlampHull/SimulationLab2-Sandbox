@@ -79,6 +79,7 @@ void IMGUIManager::DisplayMenus(Renderer* renderer)
 	{
 		DisplayMenusScenarios(renderer);
 		DisplayMenusScenarioClearColor(renderer);
+		DisplayMenusScenarioPhysicsObjects(renderer);
 		ImGui::EndMainMenuBar();
 	}
 }
@@ -91,8 +92,25 @@ void IMGUIManager::DisplayMenusScenarioClearColor(Renderer* renderer)
 			ImGui::ColorPicker4("Colour", clearColor);
 			ImGui::EndMenu();
 		}
+		renderer->SetClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 	}
-	renderer->SetClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+}
+
+void IMGUIManager::DisplayMenusScenarioPhysicsObjects(Renderer* renderer)
+{
+	if (IsScenario("Physics Objects Scenario", renderer)) {
+		if (ImGui::BeginMenu("Material Light"))
+		{
+			ImGui::ColorPicker3("Colour", lightColor);
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Material Dark"))
+		{
+			ImGui::ColorPicker3("Colour", darkColor);
+			ImGui::EndMenu();
+		}
+		renderer->SetLightDarkColor(lightColor, darkColor);
+	}
 }
 
 void IMGUIManager::DisplayMenusScenarios(Renderer*& renderer)

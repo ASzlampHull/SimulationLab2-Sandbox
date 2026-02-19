@@ -37,7 +37,7 @@ public:
 		return *this;
 	}
 
-	void UpdatePushConstants(VkCommandBuffer commandBuffer, const PipelineVulkan* pipelineVulkan) const;
+	void UpdatePushConstants(VkCommandBuffer commandBuffer, const PipelineVulkan* pipelineVulkan, std::pair<glm::vec3, glm::vec3> lightDarkColor_) const;
 	void CreateVertexIndexBuffers(const CoreVulkan* coreVulkan, const CommandPoolVulkan* commandPoolVulkan);
 	const void CleanupBuffersVI() const { vulkanBuffers.CleanupBuffersVI(); };
 

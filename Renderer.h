@@ -51,6 +51,7 @@ private:
     float deltaTime = 0.0f;
     float timeAccumulator = 0.0f;
     std::array<VkClearValue, 2> clearValues{};
+	std::pair<glm::vec3, glm::vec3> lightDarkColor = { glm::vec3(1.0f), glm::vec3(0.0f) };
 
 	void InitVulkan();
 	void InitIMGUI();
@@ -103,6 +104,7 @@ public:
 
     void SetScenario(std::unique_ptr<Scenario> scenario);
     void SetClearColor(float r, float g, float b, float a);
+    void SetLightDarkColor(float lightColor[3], float darkColor[3]);
 
 	void InitRenderer(const ConfigData& configData, GLFWwindow* window_, const CameraSettings& currentCamera_);
 	void Update(const InputManager& input, const CameraSettings& currentCamera_, float deltaTime_, bool* framebufferResized_);

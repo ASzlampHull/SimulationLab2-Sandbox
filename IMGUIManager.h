@@ -19,6 +19,8 @@ private:
 	GLFWwindow* window;
 
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	float lightColor[3] = { 1.0f, 1.0f, 1.0f};
+	float darkColor[3] = { 0.0f, 0.0f, 0.0f};
 
 	void InitializeIMGUI();
 	bool IsScenario(const std::string& scenarioName, Renderer* renderer);
@@ -62,6 +64,7 @@ public:
 	void DisplayIMGUI(uint32_t currentFrame, float deltaTime, uint32_t vertexCount, Renderer* renderer);
 	void DisplayMenus(Renderer* renderer);
 	void DisplayMenusScenarioClearColor(Renderer* renderer);
+	void DisplayMenusScenarioPhysicsObjects(Renderer* renderer);
 	void DisplayMenusScenarios(Renderer*& renderer);
 	void DisplayGraphicsDisplay(float deltaTime, uint32_t vertexCount);
 	void CleanUp();

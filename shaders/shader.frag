@@ -21,6 +21,8 @@ layout(push_constant) uniform PushConstants {
     float opacity;
     uint isVertexShaded;
     uint hasNoTexture;
+    vec3 lightColor;
+    vec3 darkColor;
 } pushConstants;
 
 layout(location = 0) in vec3 fragColor;
@@ -89,8 +91,10 @@ void main() {
     if (pushConstants.hasNoTexture != 0) {
         // Procedural checkerboard: scale controls the number of squares
         float checkerScale = 2.0; // Adjust for size in world units
-        vec3 colorA = vec3(1.0, 1.0, 1.0); // White
-        vec3 colorB = vec3(0.0, 0.0, 0.0); // Black
+        //vec3 colorA = vec3(1.0, 1.0, 1.0); // White
+        //vec3 colorB = vec3(0.0, 0.0, 0.0); // Black
+        vec3 colorA = pushConstants.lightColor; // Use light color for one of the checker colors
+        vec3 colorB = pushConstants.darkColor; // Use dark color for the other checker color
         vec3 checkerColor = CheckerboardWorld(fragWorldPos, checkerScale, colorA, colorB);
         outColor = vec4(checkerColor, opacity);
         return;

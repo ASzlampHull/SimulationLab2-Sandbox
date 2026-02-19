@@ -157,7 +157,7 @@ void Renderer::RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t image
             0, nullptr
         );
 
-        model.UpdatePushConstants(commandBuffer, pipelineVulkan);
+		model.UpdatePushConstants(commandBuffer, pipelineVulkan, lightDarkColor);
         vkCmdDrawIndexed(commandBuffer, indexCount, 1, 0, 0, 0);
 
         vertexCount += mesh.GetVertices().size();
@@ -287,6 +287,12 @@ void Renderer::SetClearColor(float r, float g, float b, float a)
 {
     clearValues[0].color = { r, g, b, a };
     clearValues[1].depthStencil = { 1.0f, 0 };
+}
+
+void Renderer::SetLightDarkColor(float lightColor[3], float darkColor[3])
+{
+    lightDarkColor.first = glm::vec3(lightColor[0], lightColor[1], lightColor[2]);
+    lightDarkColor.second = glm::vec3(darkColor[0], darkColor[1], darkColor[2]);
 }
 
 void Renderer::Update(const InputManager& input, const CameraSettings& currentCamera_, float deltaTime_, bool* framebufferResized_)

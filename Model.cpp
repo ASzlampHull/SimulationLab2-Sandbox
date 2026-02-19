@@ -1,6 +1,6 @@
 #include "Model.h"
 
-void Model::UpdatePushConstants(VkCommandBuffer commandBuffer, const PipelineVulkan* pipelineVulkan) const
+void Model::UpdatePushConstants(VkCommandBuffer commandBuffer, const PipelineVulkan* pipelineVulkan, std::pair<glm::vec3, glm::vec3> lightDarkColor_) const
 {
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::translate(modelMatrix, transformations.position);
@@ -25,6 +25,9 @@ void Model::UpdatePushConstants(VkCommandBuffer commandBuffer, const PipelineVul
 		pushConstants.isVertexShaded = false;
 
 	pushConstants.hasNoTexture = hasNoTexture;
+
+	pushConstants.lightColor = lightDarkColor_.first;
+	pushConstants.darkColor = lightDarkColor_.second;
 
 	vkCmdPushConstants(commandBuffer, 
 		pipelineVulkan->pipelineLayout,
