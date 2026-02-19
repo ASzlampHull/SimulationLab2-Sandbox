@@ -105,6 +105,9 @@ void IMGUIManager::DisplayMenusScenarios(Renderer*& renderer)
 		if (ImGui::MenuItem("Clear Color Scenario")) {
 			renderer->SetScenario(std::make_unique<ScenarioClearColor>(renderer));
 		}
+		if (ImGui::MenuItem("Physics Objects Scenario")) {
+			renderer->SetScenario(std::make_unique<ScenarioPhysicsObjects>(renderer));
+		}
 		ImGui::EndMenu();
 	}
 }

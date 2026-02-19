@@ -20,6 +20,7 @@ layout(push_constant) uniform PushConstants {
     float reflectivity;
     float opacity;
     bool isVertexShaded;
+    bool hasNoTexture;
 } pushConstants;
 
 layout(location = 0) in vec3 fragColor;
@@ -69,13 +70,17 @@ vec3 PerPixelShading()
 
 void main() {        
     float opacity = pushConstants.opacity;
-    if (pushConstants.isVertexShaded) 
-    {
-        outColor = vec4(fragColor * texture(texSampler, fragTexCoord).rgb, opacity);
+    if (pushConstants.hasNoTexture) {
+        outColor = vec4(fragColor, opacity);
+        return;
     }
-    else
-    {
-        vec3 litColor = PerPixelShading();
-        outColor = vec4(litColor, opacity);
-    }
+        if (pushConstants.isVertexShaded) 
+        {
+            outColor = vec4(fragColor * texture(texSampler, fragTexCoord).rgb, opacity);
+        }
+        else
+        {
+            vec3 litColor = PerPixelShading();
+            outColor = vec4(litColor, opacity);
+        }
 }

@@ -171,6 +171,12 @@
     <ClCompile Include="ScenarioClearColor.cpp">
       <Filter>Source Files\Scenarios</Filter>
     </ClCompile>
+    <ClCompile Include="ScenarioPhysicsObjects.cpp">
+      <Filter>Source Files\Scenarios</Filter>
+    </ClCompile>
+    <ClCompile Include="SJGParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="shaders\shader.comp">
@@ -312,6 +318,12 @@
     </ClInclude>
     <ClInclude Include="ScenarioClearColor.h">
       <Filter>Header Files\Scenarios</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioPhysicsObjects.h">
+      <Filter>Header Files\Scenarios</Filter>
+    </ClInclude>
+    <ClInclude Include="SJGParser.h">
+      <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

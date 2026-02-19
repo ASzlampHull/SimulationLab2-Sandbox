@@ -7,8 +7,6 @@ void ScenarioDefault::OnLoad() {
 }
 
 void ScenarioDefault::OnUpdate(float deltaTime, const InputManager& input) {
-	//auto& models = resourceManager.GetModels();
-	//dayNightSeasonal.Update(deltaTime, input, models.at("sun"), models.at("moon"));
 	DayNightSeasonal& dayNightSeasonal = renderer->GetDayNightSeasonal();
 	ResourceManager& resourceManager = renderer->GetResourceManager();
 	auto& models = resourceManager.GetModels();

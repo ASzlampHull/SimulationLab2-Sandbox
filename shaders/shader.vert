@@ -20,6 +20,7 @@ layout(push_constant) uniform PushConstants {
     float reflectivity;
     float opacity;
     bool isVertexShaded;
+    bool hasNoTexture;
 } pushConstants;
 
 layout(location = 0) in vec3 inPosition;

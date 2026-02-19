@@ -80,6 +80,46 @@ void ResourceManager::ClearModels()
 	models.clear();
 }
 
+// Make quickly and dirty way for testing purposes.
+void ResourceManager::CreateSJGModels(const std::vector<std::string>& sjgFilePaths)
+{
+	SJGParser sjgParser;
+	for (const auto& filePath : sjgFilePaths) {
+		MeshDataSJG meshDataSJG = sjgParser.ParseSJGFile(filePath);
+		ModelData modelData;
+		// Use file path as name for simplicity
+		modelData.name = filePath; 
+		modelData.objData.name = filePath;
+		modelData.objData.configName = filePath;
+		for (const auto& vertex : meshDataSJG.vertices) {
+			glm::vec3 vertexPos(vertex.x, vertex.y, vertex.z);
+			glm::vec3 vertexNormal(vertex.nx, vertex.ny, vertex.nz);
+			glm::vec2 vertexTexCoord(0.0f, 0.0f); // No texture coordinates in SJG format, set to default
+			modelData.objData.vertices.push_back(vertexPos);
+			modelData.objData.normals.push_back(vertexNormal);
+			modelData.objData.texCoords.push_back(vertexTexCoord);
+		}
+		modelData.objData.vertexIndices = meshDataSJG.indices;
+		modelData.objData.normalIndices = meshDataSJG.indices;
+		modelData.objData.texCoordIndices = meshDataSJG.indices;
+
+		modelData.mtlData.name = "DefaultMaterial";
+		modelData.mtlData.texturePath = "textures/dummyTexture.png";
+		modelData.mtlData.ambientColor = glm::vec3(0.1f);
+		modelData.mtlData.diffuseColor = glm::vec3(0.5f);
+		modelData.mtlData.specularColor = glm::vec3(1.0f);
+		modelData.mtlData.emissionColor = glm::vec3(0.0f);
+		modelData.mtlData.shininess = 32.0f;
+		modelData.mtlData.refractionIndex = 1.0f;
+		modelData.mtlData.transparency = 1.0f;
+		modelData.mtlData.illuminationModel = 2; // Use a common illumination model
+
+		models[modelData.name] = Model(modelData);
+		models[modelData.name].SetTransformations({ glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f) });
+		models[modelData.name].SetHasNoTexture(true);
+	}
+}
+
 const VkDescriptorPool ResourceManager::GetMainDescriptorPool() const
 {
 	const auto& pair = models.begin();

@@ -29,6 +29,7 @@ struct ModelPushConstants {
     alignas(4) float refractionIndex; // Ni
     alignas(4) float transparency; // d
     alignas(1) bool isVertexShaded;
+    alignas(1) bool hasNoTexture;
 };
 
 struct Vertex {

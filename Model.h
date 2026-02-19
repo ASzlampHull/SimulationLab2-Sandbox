@@ -6,11 +6,6 @@
 #include "VulkanDataTypes.h"
 #include "VulkanBuffers.h"
 
-struct Transformations {
-	glm::vec3 position;
-	glm::vec3 rotation;
-	glm::vec3 scale;
-};
 
 class Model final {
 private:
@@ -19,6 +14,7 @@ private:
 	VulkanBuffers vulkanBuffers;
 	Transformations transformations = {};
 	std::string name = "";
+	bool hasNoTexture = false;
 	const ModelBuffersVulkan* modelBuffersVulkan = nullptr;
 
 public:
@@ -45,6 +41,7 @@ public:
 	void CreateVertexIndexBuffers(const CoreVulkan* coreVulkan, const CommandPoolVulkan* commandPoolVulkan);
 	const void CleanupBuffersVI() const { vulkanBuffers.CleanupBuffersVI(); };
 
+	void SetHasNoTexture(bool hasNoTexture_) { hasNoTexture = hasNoTexture_; }
 	const Mesh& GetMesh() const { return mesh; };
 	const Material& GetMaterial() const { return material; };
 	Mesh& GetMeshRef() { return mesh; };

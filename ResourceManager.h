@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "ModelParserDataTypes.h"
 #include "ModelLoader.h"
+#include "SJGParser.h"
 
 class ResourceManager final {
 private:
@@ -25,6 +26,8 @@ public:
 	void CreateVertexIndexBuffers(const CoreVulkan* coreVulkan, const CommandPoolVulkan* commandPoolVulkan);
 	void CleanupBuffersVI();
 	void ClearModels();
+
+	void CreateSJGModels(const std::vector<std::string>& sjgFilePaths);
 
 	std::unordered_map<std::string, Model>& GetModels() { return models; };
 	const VkDescriptorPool GetMainDescriptorPool() const;

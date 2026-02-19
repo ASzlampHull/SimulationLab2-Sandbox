@@ -45,4 +45,20 @@ struct ModelData {
 	glm::vec3 scale;
 };
 
+struct VertexSJG {
+	float x, y, z;
+	float nx, ny, nz;
+};
+
+struct MeshDataSJG {
+	std::vector<VertexSJG> vertices;
+	IndicesVector indices;
+};
+
+struct Transformations {
+	glm::vec3 position;
+	glm::vec3 rotation;
+	glm::vec3 scale;
+};
+
 using ModelVector = std::vector<ModelData>;

@@ -157,6 +157,8 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="ScenarioClearColor.cpp" />
     <ClCompile Include="ScenarioDefault.cpp" />
+    <ClCompile Include="ScenarioPhysicsObjects.cpp" />
+    <ClCompile Include="SJGParser.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -219,6 +221,8 @@
     <ClInclude Include="Scenario.h" />
     <ClInclude Include="ScenarioClearColor.h" />
     <ClInclude Include="ScenarioDefault.h" />
+    <ClInclude Include="ScenarioPhysicsObjects.h" />
+    <ClInclude Include="SJGParser.h" />
     <ClInclude Include="VulkanBuffers.h" />
     <ClInclude Include="VulkanCommandBuffers.h" />
     <ClInclude Include="VulkanCore.h" />

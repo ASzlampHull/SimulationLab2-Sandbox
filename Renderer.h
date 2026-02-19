@@ -18,6 +18,7 @@
 #include "Scenario.h"
 #include "ScenarioDefault.h"
 #include "ScenarioClearColor.h"
+#include "ScenarioPhysicsObjects.h"
 
 
 class Renderer final {
@@ -94,6 +95,11 @@ public:
 	DayNightSeasonal& GetDayNightSeasonal() { return dayNightSeasonal; };
 	Scenario* GetCurrentScenario() const { return currentScenario.get(); };
 	const CoreVulkan& GetCoreVulkan() const { return *coreVulkan; };
+
+    const CoreVulkan* GetCoreVulkanPtr() const { return coreVulkan; };
+    const CommandPoolVulkan* GetCommandPoolVulkanPtr() const { return commandPoolVulkan; };
+	const PipelineVulkan* GetPipelineVulkanPtr() const { return pipelineVulkan; };
+	UniformVulkan& GetUniformBufferObject() { return uniformBufferObject; };
 
     void SetScenario(std::unique_ptr<Scenario> scenario);
     void SetClearColor(float r, float g, float b, float a);
